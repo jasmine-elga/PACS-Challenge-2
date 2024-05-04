@@ -1,0 +1,59 @@
+This repositiory contains the code for the 2nd Challenge of the course Advanced Programming for Scientific Computing (PACS) at Politecnico di Milano.
+
+\doxysection*{Description of the program}
+
+This program allows the user to work with sparse matrices stored in a compressed or an uncompressed format. The storage ordering can be row-\/wise or column-\/wise.
+
+In the uncompressed format, the matrix is stored in a {\ttfamily std\+::map}, where the couple (i,j) acts as the key.
+
+In the compressed format, instead,the matrix is stored using three vectors\+: compressed\+\_\+inner, compressed\+\_\+outer, and compressed\+\_\+data, representing the CSR (Compressed Sparse Row) or CSC (Compressed Sparse Column) format depending on the chosen storage order.
+
+\doxysection*{Features}
+
+
+\begin{DoxyItemize}
+\item Access elements\+: the non-\/const call operator can access elements and add them (in uncmpressed format); whereas the const version returns 0 if elements is within the range of the matrix but not present.
+\item Compression and Uncompression\+: Convert between uncompressed and compressed formats.
+\item Matrix-\/vector multiplication\+: The matrix-\/vector multiplication is implemented and also estended to the case where the vector is a matrix with just one column.
+\item Matrix Market File I/O\+: Read and write matrices in Matrix Market format from files.
+\item Norm Computations\+: Compute various norms (One norm, Infinity norm, Frobenius norm) for the matrix.
+\item Concepts and Traits\+: Utilizes C++ concepts and traits to handle numeric and complex types.
+\end{DoxyItemize}
+
+\doxysection*{How to install}
+
+Type
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone git@github.com:jasmine-\/elga/PACS-\/Challenge-\/2.git}
+
+\end{DoxyCode}
+
+
+The Makefile contains the variable {\ttfamily PACS\+\_\+\+ROOT}. Before compiling the code, set it to the path of the course Examples as following\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export PACS\_ROOT=/complete\_path\_to\_pacs-\/examples/pacs-\/examples/Examples/ }
+
+\end{DoxyCode}
+
+
+\doxysection*{How to compile and run the code}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+will compile the code.
+
+To run the code, type\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./main}
+
+\end{DoxyCode}
+ 

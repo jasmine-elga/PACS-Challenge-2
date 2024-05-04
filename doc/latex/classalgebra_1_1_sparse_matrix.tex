@@ -1,0 +1,551 @@
+\hypertarget{classalgebra_1_1_sparse_matrix}{}\doxysection{algebra\+::Sparse\+Matrix$<$ T, Order $>$ Class Template Reference}
+\label{classalgebra_1_1_sparse_matrix}\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+
+
+Sparse matrix class supporting compressed and uncompressed storage.  
+
+
+
+
+{\ttfamily \#include $<$sparse\+\_\+matrix.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a1e6663ef0333734e1d146e04ac2f7d5a}{Sparse\+Matrix}} (std\+::size\+\_\+t rows, std\+::size\+\_\+t cols)
+\begin{DoxyCompactList}\small\item\em Constructor\+: constructs a new Sparse Matrix object. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a3a103e36ce3255af0d611292f78831a2}{operator()}} (std\+::size\+\_\+t i, std\+::size\+\_\+t j)
+\begin{DoxyCompactList}\small\item\em Provides non-\/const access to matrix elements, can add element only for uncompressed matrix. \end{DoxyCompactList}\item 
+const T \& \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a131cd1392e5d276b092a4327392173b8}{operator()}} (std\+::size\+\_\+t i, std\+::size\+\_\+t j) const
+\begin{DoxyCompactList}\small\item\em Provides const access to matrix elements; returns 0 if the element is inside matrix bounds but is not present. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a291d7846e8aec4e80421d71b5fdd382f}{compress}} ()
+\begin{DoxyCompactList}\small\item\em Compresses the matrix data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a99e07b7db36021a1e98498846cde744a}{uncompress}} ()
+\begin{DoxyCompactList}\small\item\em Uncompresses the matrix data. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a92f9b457671bef0a9429b8a840d96436}{is\+\_\+compressed}} () const
+\begin{DoxyCompactList}\small\item\em Utility\+: checks if the matrix is in compressed format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a33fce9abd6c1b7b242761b5f007cf9db}{print}} () const
+\begin{DoxyCompactList}\small\item\em Utility\+: Prints the matrix. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a3bf61509563a210f9791910fa9e3ba24}{compressed\+\_\+access}} (std\+::size\+\_\+t i, std\+::size\+\_\+t j)
+\begin{DoxyCompactList}\small\item\em Utility\+: Provides access to matrix elements in compressed format. \end{DoxyCompactList}\item 
+const auto \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_ab3302437039d5a4c31c72fd722963291}{compressed\+\_\+access}} (std\+::size\+\_\+t i, std\+::size\+\_\+t j) const
+\begin{DoxyCompactList}\small\item\em Utility\+: Provides access to matrix elements in compressed format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_aca1d473cc36c99ae3023531f988e4282}{resize}} (std\+::size\+\_\+t rows, std\+::size\+\_\+t cols)
+\begin{DoxyCompactList}\small\item\em Utility\+: Resizes the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a855db4e38a26cb0f2e04d65ffc210862}{read}} (const std\+::string \&file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Utility\+: Reads matrix data in from a file written in matrix market format. \end{DoxyCompactList}\item 
+{\footnotesize template$<$Norm\+Type N$>$ }\\T \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_af1e7085e08765ece4a22a43ce030a238}{norm}} () const
+\begin{DoxyCompactList}\small\item\em Computes the norm of the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}{Map\+Data}} = std\+::map$<$ std\+::array$<$ std\+::size\+\_\+t, 2 $>$, T, \mbox{\hyperlink{structalgebra_1_1_compare_helper}{Compare\+Helper}}$<$ Order $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a1ef4ccde3acc9dcf43d3e813e8630c4e}{compressed}}
+\begin{DoxyCompactList}\small\item\em indicates if the matrix is in compressed format. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_ae6d916073432641d38dd56eabce3d5d4}{numrows}}
+\begin{DoxyCompactList}\small\item\em number of rows of the matrix \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a0b8ce6e432a70e02c7f0247548878cc6}{numcols}}
+\begin{DoxyCompactList}\small\item\em number of columns of the matrix \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}{Map\+Data}} \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_aee15f2bcb83906143cd738c28c884707}{uncompressed\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em stores data in uncompressed state \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_ad2e70222aa2fb2a338ceffeb77dfeb01}{compressed\+\_\+inner}}
+\begin{DoxyCompactList}\small\item\em stores inner index of compressed state \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::size\+\_\+t $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_af0039c860123473a6ac674d242aa14fb}{compressed\+\_\+outer}}
+\begin{DoxyCompactList}\small\item\em stores outer index of compressed state \end{DoxyCompactList}\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_ae9cd1080fdee4b106e1ed063e54b7f7d}{compressed\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em stores data of compressed state \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a2ca621523fba58269a6f8b845f719bc8}{operator$\ast$}} (const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&matrix, const std\+::vector$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Overloaded operator for matrix-\/vector multiplication. \end{DoxyCompactList}\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a0f25e17354371fda33c04f60ae842479}{operator$\ast$}} (const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&matrix, const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Overloaded operator for multiplication between a matrix and another matrix with just one column. \end{DoxyCompactList}\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix_aef0e11e9fef9ab41c9f9d2344413cd0c}{generate\+Random\+Vector}} (const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Utility function to generate a random vector of suitable length to perform matrix-\/vector multiplication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$Real\+Or\+Complex T, Storage\+Order Order$>$\newline
+class algebra\+::\+Sparse\+Matrix$<$ T, Order $>$}
+
+Sparse matrix class supporting compressed and uncompressed storage. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of elements in the matrix \\
+\hline
+{\em Order} & The storage order of the matrix \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line 90 of file sparse\+\_\+matrix.\+hpp.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}\label{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!MapData@{MapData}}
+\index{MapData@{MapData}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{MapData}{MapData}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+using \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::\mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}{Map\+Data}} =  std\+::map$<$std\+::array$<$std\+::size\+\_\+t, 2$>$, T, \mbox{\hyperlink{structalgebra_1_1_compare_helper}{Compare\+Helper}}$<$Order$>$ $>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 97 of file sparse\+\_\+matrix.\+hpp.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a1e6663ef0333734e1d146e04ac2f7d5a}\label{classalgebra_1_1_sparse_matrix_a1e6663ef0333734e1d146e04ac2f7d5a}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!SparseMatrix@{SparseMatrix}}
+\index{SparseMatrix@{SparseMatrix}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{SparseMatrix()}{SparseMatrix()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+\mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::\mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{rows,  }\item[{std\+::size\+\_\+t}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor\+: constructs a new Sparse Matrix object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & Number of rows in the matrix \\
+\hline
+{\em cols} & Number of columns in the matrix \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 112 of file sparse\+\_\+matrix.\+hpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a291d7846e8aec4e80421d71b5fdd382f}\label{classalgebra_1_1_sparse_matrix_a291d7846e8aec4e80421d71b5fdd382f}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compress@{compress}}
+\index{compress@{compress}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compress()}{compress()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compress}
+
+
+
+Compresses the matrix data. 
+
+
+
+Definition at line 140 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a3bf61509563a210f9791910fa9e3ba24}\label{classalgebra_1_1_sparse_matrix_a3bf61509563a210f9791910fa9e3ba24}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed\_access@{compressed\_access}}
+\index{compressed\_access@{compressed\_access}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed\_access()}{compressed\_access()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+auto \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\+\_\+access (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})}
+
+
+
+Utility\+: Provides access to matrix elements in compressed format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+auto Reference to the element at (i, j) in compressed format 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_ab3302437039d5a4c31c72fd722963291}\label{classalgebra_1_1_sparse_matrix_ab3302437039d5a4c31c72fd722963291}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed\_access@{compressed\_access}}
+\index{compressed\_access@{compressed\_access}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed\_access()}{compressed\_access()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+const auto \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\+\_\+access (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{std\+::size\+\_\+t}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Utility\+: Provides access to matrix elements in compressed format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const auto Const reference to the element at (i, j) in compressed format 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a92f9b457671bef0a9429b8a840d96436}\label{classalgebra_1_1_sparse_matrix_a92f9b457671bef0a9429b8a840d96436}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!is\_compressed@{is\_compressed}}
+\index{is\_compressed@{is\_compressed}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{is\_compressed()}{is\_compressed()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+bool \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::is\+\_\+compressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Utility\+: checks if the matrix is in compressed format. 
+
+\begin{DoxyReturn}{Returns}
+true if compressed, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_af1e7085e08765ece4a22a43ce030a238}\label{classalgebra_1_1_sparse_matrix_af1e7085e08765ece4a22a43ce030a238}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!norm@{norm}}
+\index{norm@{norm}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+template$<$Norm\+Type N$>$ \\
+template std\+::complex$<$ double $>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::norm$<$ \mbox{\hyperlink{namespacealgebra_a803304985e4cb4231141e1cd2b4182e1aaa17ea000d1c6e31414adf8083928f30}{algebra\+::\+Norm\+Type\+::\+Frobenius}} $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Computes the norm of the matrix. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em N} & Type of norm to compute (One, Infinity, Frobenius) \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+T\& Reference to the norm value 
+\end{DoxyReturn}
+
+
+Definition at line 372 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a3a103e36ce3255af0d611292f78831a2}\label{classalgebra_1_1_sparse_matrix_a3a103e36ce3255af0d611292f78831a2}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+T \& \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{std\+::size\+\_\+t}]{j }\end{DoxyParamCaption})}
+
+
+
+Provides non-\/const access to matrix elements, can add element only for uncompressed matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\& Reference to the element at (i, j) 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a131cd1392e5d276b092a4327392173b8}\label{classalgebra_1_1_sparse_matrix_a131cd1392e5d276b092a4327392173b8}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+const T \& \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::operator() (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{i,  }\item[{std\+::size\+\_\+t}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Provides const access to matrix elements; returns 0 if the element is inside matrix bounds but is not present. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index \\
+\hline
+{\em j} & Column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const T\& Const reference to the element at (i, j) 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a33fce9abd6c1b7b242761b5f007cf9db}\label{classalgebra_1_1_sparse_matrix_a33fce9abd6c1b7b242761b5f007cf9db}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!print@{print}}
+\index{print@{print}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::print}
+
+
+
+Utility\+: Prints the matrix. 
+
+
+
+Definition at line 258 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a855db4e38a26cb0f2e04d65ffc210862}\label{classalgebra_1_1_sparse_matrix_a855db4e38a26cb0f2e04d65ffc210862}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!read@{read}}
+\index{read@{read}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Utility\+: Reads matrix data in from a file written in matrix market format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & Name of the file to read from \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 317 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_aca1d473cc36c99ae3023531f988e4282}\label{classalgebra_1_1_sparse_matrix_aca1d473cc36c99ae3023531f988e4282}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!resize@{resize}}
+\index{resize@{resize}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::resize (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{rows,  }\item[{std\+::size\+\_\+t}]{cols }\end{DoxyParamCaption})}
+
+
+
+Utility\+: Resizes the matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & New number of rows \\
+\hline
+{\em cols} & New number of columns \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 305 of file sparse\+\_\+matrix.\+cpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a99e07b7db36021a1e98498846cde744a}\label{classalgebra_1_1_sparse_matrix_a99e07b7db36021a1e98498846cde744a}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!uncompress@{uncompress}}
+\index{uncompress@{uncompress}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{uncompress()}{uncompress()}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+void \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::uncompress}
+
+
+
+Uncompresses the matrix data. 
+
+
+
+Definition at line 211 of file sparse\+\_\+matrix.\+cpp.
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_aef0e11e9fef9ab41c9f9d2344413cd0c}\label{classalgebra_1_1_sparse_matrix_aef0e11e9fef9ab41c9f9d2344413cd0c}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!generateRandomVector@{generateRandomVector}}
+\index{generateRandomVector@{generateRandomVector}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{generateRandomVector}{generateRandomVector}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$T$>$ generate\+Random\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Utility function to generate a random vector of suitable length to perform matrix-\/vector multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & Matrix object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+T$>$ Random vector 
+\end{DoxyReturn}
+
+
+Definition at line 295 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a0f25e17354371fda33c04f60ae842479}\label{classalgebra_1_1_sparse_matrix_a0f25e17354371fda33c04f60ae842479}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$T$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&}]{matrix,  }\item[{const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Overloaded operator for multiplication between a matrix and another matrix with just one column. 
+
+Note\+: it works only if the two matrices are stored with the same order.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & Matrix object \\
+\hline
+{\em vec} & Matrix with only one column to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+T$>$ Resulting vector 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a2ca621523fba58269a6f8b845f719bc8}\label{classalgebra_1_1_sparse_matrix_a2ca621523fba58269a6f8b845f719bc8}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$}{operator*}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$T$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ T, Order $>$ \&}]{matrix,  }\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Overloaded operator for matrix-\/vector multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & Matrix object \\
+\hline
+{\em vec} & Vector to multiply with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+T$>$ Resulting vector 
+\end{DoxyReturn}
+
+
+Definition at line 210 of file sparse\+\_\+matrix.\+hpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a1ef4ccde3acc9dcf43d3e813e8630c4e}\label{classalgebra_1_1_sparse_matrix_a1ef4ccde3acc9dcf43d3e813e8630c4e}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed@{compressed}}
+\index{compressed@{compressed}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed}{compressed}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+bool \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+indicates if the matrix is in compressed format. 
+
+
+
+Definition at line 92 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_ae9cd1080fdee4b106e1ed063e54b7f7d}\label{classalgebra_1_1_sparse_matrix_ae9cd1080fdee4b106e1ed063e54b7f7d}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed\_data@{compressed\_data}}
+\index{compressed\_data@{compressed\_data}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed\_data}{compressed\_data}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$T$>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\+\_\+data\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+stores data of compressed state 
+
+
+
+Definition at line 103 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_ad2e70222aa2fb2a338ceffeb77dfeb01}\label{classalgebra_1_1_sparse_matrix_ad2e70222aa2fb2a338ceffeb77dfeb01}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed\_inner@{compressed\_inner}}
+\index{compressed\_inner@{compressed\_inner}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed\_inner}{compressed\_inner}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$std\+::size\+\_\+t$>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\+\_\+inner\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+stores inner index of compressed state 
+
+
+
+Definition at line 101 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_af0039c860123473a6ac674d242aa14fb}\label{classalgebra_1_1_sparse_matrix_af0039c860123473a6ac674d242aa14fb}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!compressed\_outer@{compressed\_outer}}
+\index{compressed\_outer@{compressed\_outer}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{compressed\_outer}{compressed\_outer}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::vector$<$std\+::size\+\_\+t$>$ \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::compressed\+\_\+outer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+stores outer index of compressed state 
+
+
+
+Definition at line 102 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_a0b8ce6e432a70e02c7f0247548878cc6}\label{classalgebra_1_1_sparse_matrix_a0b8ce6e432a70e02c7f0247548878cc6}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!numcols@{numcols}}
+\index{numcols@{numcols}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{numcols}{numcols}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::numcols\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of columns of the matrix 
+
+type of data in uncompressed state 
+
+Definition at line 94 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_ae6d916073432641d38dd56eabce3d5d4}\label{classalgebra_1_1_sparse_matrix_ae6d916073432641d38dd56eabce3d5d4}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!numrows@{numrows}}
+\index{numrows@{numrows}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{numrows}{numrows}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::numrows\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of rows of the matrix 
+
+
+
+Definition at line 93 of file sparse\+\_\+matrix.\+hpp.
+
+\mbox{\Hypertarget{classalgebra_1_1_sparse_matrix_aee15f2bcb83906143cd738c28c884707}\label{classalgebra_1_1_sparse_matrix_aee15f2bcb83906143cd738c28c884707}} 
+\index{algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}!uncompressed\_data@{uncompressed\_data}}
+\index{uncompressed\_data@{uncompressed\_data}!algebra::SparseMatrix$<$ T, Order $>$@{algebra::SparseMatrix$<$ T, Order $>$}}
+\doxysubsubsection{\texorpdfstring{uncompressed\_data}{uncompressed\_data}}
+{\footnotesize\ttfamily template$<$Real\+Or\+Complex T, Storage\+Order Order$>$ \\
+\mbox{\hyperlink{classalgebra_1_1_sparse_matrix_a6d5fa5a94e2c3b0adf665401cd31cb46}{Map\+Data}} \mbox{\hyperlink{classalgebra_1_1_sparse_matrix}{algebra\+::\+Sparse\+Matrix}}$<$ T, Order $>$\+::uncompressed\+\_\+data\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+stores data in uncompressed state 
+
+
+
+Definition at line 98 of file sparse\+\_\+matrix.\+hpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sparse__matrix_8hpp}{sparse\+\_\+matrix.\+hpp}}\item 
+\mbox{\hyperlink{sparse__matrix_8cpp}{sparse\+\_\+matrix.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,62 @@
+\hypertarget{sparse__matrix_8hpp}{}\doxysection{sparse\+\_\+matrix.\+hpp File Reference}
+\label{sparse__matrix_8hpp}\index{sparse\_matrix.hpp@{sparse\_matrix.hpp}}
+
+
+Contains the definition of Matrix class and its member functions.  
+
+
+{\ttfamily \#include \char`\"{}sparse\+\_\+matrix\+\_\+traits.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$numeric$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$complex$>$}\newline
+Include dependency graph for sparse\+\_\+matrix.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structalgebra_1_1_compare_helper}{algebra\+::\+Compare\+Helper$<$ Order $>$}}
+\begin{DoxyCompactList}\small\item\em Helper struct for comparison based on storage ordering. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classalgebra_1_1_matrix}{algebra\+::\+Matrix$<$ T, Order $>$}}
+\begin{DoxyCompactList}\small\item\em Sparse matrix class supporting compressed and uncompressed storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacealgebra}{algebra}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacealgebra_af7f291bc9289c8ac99068a8ae4873108}{algebra\+::\+Storage\+Order}} \{ \mbox{\hyperlink{namespacealgebra_af7f291bc9289c8ac99068a8ae4873108ae84ff09a73b41c09a13ac76bceefa58b}{algebra\+::\+Row\+Ordering}}
+, \mbox{\hyperlink{namespacealgebra_af7f291bc9289c8ac99068a8ae4873108a16c0d2bcc0377b4f28b92a8065392820}{algebra\+::\+Column\+Ordering}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator indicating the Storage ordering. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{namespacealgebra_a803304985e4cb4231141e1cd2b4182e1}{algebra\+::\+Norm\+Type}} \{ \mbox{\hyperlink{namespacealgebra_a803304985e4cb4231141e1cd2b4182e1a06c2cea18679d64399783748fa367bdd}{algebra\+::\+One}}
+, \mbox{\hyperlink{namespacealgebra_a803304985e4cb4231141e1cd2b4182e1aeb2ac5b04180d8d6011a016aeb8f75b3}{algebra\+::\+Infinity}}
+, \mbox{\hyperlink{namespacealgebra_a803304985e4cb4231141e1cd2b4182e1aaa17ea000d1c6e31414adf8083928f30}{algebra\+::\+Frobenius}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator indicating the type of norm to be computed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespacealgebra_ac72dc3743378fac774682f61c9fac8b1}{algebra\+::complex\+Less}} (const std\+::complex$<$ T $>$ \&lhs, const std\+::complex$<$ T $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Compares two complex numbers by their magnitudes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains the definition of Matrix class and its member functions. 
+

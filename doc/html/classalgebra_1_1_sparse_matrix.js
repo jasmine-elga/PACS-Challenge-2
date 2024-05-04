@@ -1,0 +1,26 @@
+var classalgebra_1_1_sparse_matrix =
+[
+    [ "MapData", "classalgebra_1_1_sparse_matrix.html#a6d5fa5a94e2c3b0adf665401cd31cb46", null ],
+    [ "SparseMatrix", "classalgebra_1_1_sparse_matrix.html#a1e6663ef0333734e1d146e04ac2f7d5a", null ],
+    [ "compress", "classalgebra_1_1_sparse_matrix.html#a291d7846e8aec4e80421d71b5fdd382f", null ],
+    [ "compressed_access", "classalgebra_1_1_sparse_matrix.html#a3bf61509563a210f9791910fa9e3ba24", null ],
+    [ "compressed_access", "classalgebra_1_1_sparse_matrix.html#ab3302437039d5a4c31c72fd722963291", null ],
+    [ "is_compressed", "classalgebra_1_1_sparse_matrix.html#a92f9b457671bef0a9429b8a840d96436", null ],
+    [ "norm", "classalgebra_1_1_sparse_matrix.html#af1e7085e08765ece4a22a43ce030a238", null ],
+    [ "operator()", "classalgebra_1_1_sparse_matrix.html#a3a103e36ce3255af0d611292f78831a2", null ],
+    [ "operator()", "classalgebra_1_1_sparse_matrix.html#a131cd1392e5d276b092a4327392173b8", null ],
+    [ "print", "classalgebra_1_1_sparse_matrix.html#a33fce9abd6c1b7b242761b5f007cf9db", null ],
+    [ "read", "classalgebra_1_1_sparse_matrix.html#a855db4e38a26cb0f2e04d65ffc210862", null ],
+    [ "resize", "classalgebra_1_1_sparse_matrix.html#aca1d473cc36c99ae3023531f988e4282", null ],
+    [ "uncompress", "classalgebra_1_1_sparse_matrix.html#a99e07b7db36021a1e98498846cde744a", null ],
+    [ "generateRandomVector", "classalgebra_1_1_sparse_matrix.html#aef0e11e9fef9ab41c9f9d2344413cd0c", null ],
+    [ "operator*", "classalgebra_1_1_sparse_matrix.html#a0f25e17354371fda33c04f60ae842479", null ],
+    [ "operator*", "classalgebra_1_1_sparse_matrix.html#a2ca621523fba58269a6f8b845f719bc8", null ],
+    [ "compressed", "classalgebra_1_1_sparse_matrix.html#a1ef4ccde3acc9dcf43d3e813e8630c4e", null ],
+    [ "compressed_data", "classalgebra_1_1_sparse_matrix.html#ae9cd1080fdee4b106e1ed063e54b7f7d", null ],
+    [ "compressed_inner", "classalgebra_1_1_sparse_matrix.html#ad2e70222aa2fb2a338ceffeb77dfeb01", null ],
+    [ "compressed_outer", "classalgebra_1_1_sparse_matrix.html#af0039c860123473a6ac674d242aa14fb", null ],
+    [ "numcols", "classalgebra_1_1_sparse_matrix.html#a0b8ce6e432a70e02c7f0247548878cc6", null ],
+    [ "numrows", "classalgebra_1_1_sparse_matrix.html#ae6d916073432641d38dd56eabce3d5d4", null ],
+    [ "uncompressed_data", "classalgebra_1_1_sparse_matrix.html#aee15f2bcb83906143cd738c28c884707", null ]
+];
