@@ -62,7 +62,9 @@ in ./doc/html you find the documentation in html, just run
 your favourite browser and load index.html
 
 
-In the main, 3 different test cases are implemented:
+
+
+In `main.cpp`, 3 different test cases are implemented:
 - A simple test case with a small matrix
 - A more complex test case, where the matrix is read from the file `lnsp_131.mtx`
 - A test case with a complex matrix 
