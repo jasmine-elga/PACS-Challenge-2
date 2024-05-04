@@ -54,6 +54,13 @@ To run the code, type:
 ./main
 ```
 
+To produce the documentaton, type: 
+```
+doxygen
+```
+in ./doc/html you find the documentation in html, just run
+your favourite browser and load index.html
+
 
 In the main, 3 different test cases are implemented:
 - A simple test case with a small matrix
