@@ -269,13 +269,11 @@ namespace algebra {
             std::vector<T> vecColumn; // vector to store the column
             if(vec.is_compressed()){
                  for (size_t i = 0; i < vec.numrows; ++i){
-                    std::cout<<vec.compressed_data[i]<<std::endl;
                     vecColumn.push_back(vec.compressed_data[i]);
                  }
             }
             else{
                 for (const auto& [coords, value] : vec.uncompressed_data){
-                    std::cout<<value<<std::endl;
                     vecColumn.push_back(value);
                     }
             }
