@@ -5,12 +5,6 @@ LDFLAGS  ?= -L$(PACS_ROOT)/src/Utilities
 LDLIBS   ?= -L$(PACS_ROOT)/lib
 LINK.o := $(LINK.cc) # Use C++ linker.
 
-#CXX      ?= g++
-#CXXFLAGS ?= -std=c++17
-#CPPFLAGS ?= -O3 -Wall -pedantic -I.
-#LDLIBS   ?= 
-#LINK.o := $(LINK.cc) # Use C++ linker.
-
 DEPEND = make.dep
 
 EXEC = main

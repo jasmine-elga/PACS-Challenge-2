@@ -1,10 +1,16 @@
+/**
+ * @file sparse_matrix.cpp
+ * @brief Contains the implementation of the Matrix memeber functions
+ */
+
 #include "sparse_matrix.hpp"
+
 
 namespace algebra {
 
     // Utility function to access elements in compressed format
     template<RealOrComplex T, StorageOrder Order>
-    auto SparseMatrix<T, Order>::compressed_access(std::size_t i, std::size_t j) {
+    auto Matrix<T, Order>::compressed_access(std::size_t i, std::size_t j) {
             // Look for the element
             //if j is in the interval [ outer[inner[i]], outer[inner[i+1]] ), then A[i,j] exists
             std::size_t row_start = compressed_inner[i];
@@ -18,7 +24,7 @@ namespace algebra {
 
      // Utility function to access elements in compressed format (const version)
     template<RealOrComplex T, StorageOrder Order>
-    const auto SparseMatrix<T, Order>::compressed_access(std::size_t i, std::size_t j) const{
+    const auto Matrix<T, Order>::compressed_access(std::size_t i, std::size_t j) const{
             // Look for the element
             //if j is in the interval [ outer[inner[i]], outer[inner[i+1]] ), then A[i,j] exists
             std::size_t row_start = compressed_inner[i];
@@ -33,7 +39,7 @@ namespace algebra {
     // Call operator, non const version: can add elements if matrix in uncompressed format,
     // can only modify existing elements if in compressed format
     template<RealOrComplex T, StorageOrder Order>
-    T& SparseMatrix<T, Order>::operator()(std::size_t i, std::size_t j) {
+    T& Matrix<T, Order>::operator()(std::size_t i, std::size_t j) {
         if (!is_compressed()) {
             // Uncompressed format, I can add new elements 
             if(i >=numrows || j >=numcols){
@@ -79,7 +85,7 @@ namespace algebra {
 
     // Call operator, const version; returns 0 if the element is in matrix range but not present
     template<RealOrComplex T, StorageOrder Order>
-    const T& SparseMatrix<T, Order>::operator()(std::size_t i, std::size_t j) const {
+    const T& Matrix<T, Order>::operator()(std::size_t i, std::size_t j) const {
         if (i >= numrows || j >= numcols) {
               throw std::out_of_range("Index out of boundary"); //if indexes out of range
         }
@@ -131,7 +137,7 @@ namespace algebra {
 
     // Compresses an uncompressed matrix
     template<RealOrComplex T, StorageOrder Order>
-    void SparseMatrix<T, Order>::compress() {
+    void Matrix<T, Order>::compress() {
        if (is_compressed()) {
             return; // Matrix is already compressed, no need to compress again
         }
@@ -202,7 +208,7 @@ namespace algebra {
 
     // Uncompresses a compressed matrix
     template<RealOrComplex T, StorageOrder Order>
-    void SparseMatrix<T, Order>::uncompress() {
+    void Matrix<T, Order>::uncompress() {
        if (!is_compressed()) {
             return; // Matrix is already uncompressed, no need to uncompress again
         }
@@ -249,7 +255,7 @@ namespace algebra {
     // If the matrix is in uncompressed format, it renders the view and prints also zeros
     // If the matrix is in compressed format, it prints the 3 vectors (inner, outer, data)
     template<RealOrComplex T, StorageOrder Order>
-    void SparseMatrix<T, Order>::print() const {
+    void Matrix<T, Order>::print() const {
             if (!is_compressed()) {
                 // Print elements in uncompressed form
                 std::cout << "Matrix (" << numrows << "x" << numcols << ") in non-compressed form:\n";
@@ -296,7 +302,7 @@ namespace algebra {
     
     // Resize method 
     template<RealOrComplex T, StorageOrder Order>
-    void SparseMatrix<T, Order>::resize(std::size_t rows, std::size_t cols) {
+    void Matrix<T, Order>::resize(std::size_t rows, std::size_t cols) {
             if(!is_compressed()){
                 numrows = rows;
                 numcols = cols;
@@ -308,7 +314,7 @@ namespace algebra {
    
     // Reads matrix in matrix market format from a file
     template<RealOrComplex T, StorageOrder Order>
-    void  SparseMatrix<T, Order>::read(const std::string& file_name){
+    void  Matrix<T, Order>::read(const std::string& file_name){
         std::ifstream file(file_name);
         if (!file.is_open()) {
             std::cerr << "Error, to open the file: " << file_name << std::endl;
@@ -363,7 +369,7 @@ namespace algebra {
     // Computes the norm of the matrix: options are One norm, Infinity norm and Frobenius norm
     template<RealOrComplex T, StorageOrder Order>
     template<NormType N>
-    T SparseMatrix<T, Order>::norm() const {
+    T Matrix<T, Order>::norm() const {
         T norm_value = 0;
 
         if(is_compressed()){
@@ -501,30 +507,30 @@ namespace algebra {
 
 
     // Explicit instantiation for the types we use
-    template class SparseMatrix<double, StorageOrder::RowOrdering>;
-    template class SparseMatrix<double, StorageOrder::ColumnOrdering>;
+    template class Matrix<double, StorageOrder::RowOrdering>;
+    template class Matrix<double, StorageOrder::ColumnOrdering>;
     // Explicit instantiation for std::complex<double>
-    template class algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering>;
-    template class algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>;
+    template class algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering>;
+    template class algebra::Matrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>;
     
     // Explicit instantiation for One-norm
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::One>() const;
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::One>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::One>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::One>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::One>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::One>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::One>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::One>() const;
     
 
     // Explicit instantiation for Infinity-norm
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Infinity>() const;
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Infinity>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Infinity>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Infinity>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Infinity>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Infinity>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Infinity>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Infinity>() const;
 
     // Explicit instantiation for Frobenius-norm
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Frobenius>() const;
-    template double algebra::SparseMatrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Frobenius>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Frobenius>() const;
-    template std::complex<double> algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Frobenius>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Frobenius>() const;
+    template double algebra::Matrix<double, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Frobenius>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Frobenius>() const;
+    template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Frobenius>() const;
 
 
 } // namespace algebra

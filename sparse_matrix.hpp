@@ -1,3 +1,8 @@
+/**
+ * @file sparse_matrix.hpp
+ * @brief Contains the definition of Matrix class and its member functions.
+ */
+
 #ifndef SPARSE_MATRIX_HPP
 #define SPARSE_MATRIX_HPP
 
@@ -82,7 +87,7 @@ namespace algebra {
      * @tparam Order The storage order of the matrix
      */
     template<RealOrComplex T, StorageOrder Order >
-    class SparseMatrix {
+    class Matrix {
     private:
         bool compressed;  //!< indicates if the matrix is in compressed format.
         std::size_t numrows;  /*!< number of rows of the matrix*/
@@ -104,7 +109,7 @@ namespace algebra {
          * @param rows Number of rows in the matrix
          * @param cols Number of columns in the matrix
          */
-        SparseMatrix(std::size_t rows, std::size_t cols): compressed(false), numrows(rows), numcols(cols){};
+        Matrix(std::size_t rows, std::size_t cols): compressed(false), numrows(rows), numcols(cols){};
 
         /**
          * @brief Provides non-const access to matrix elements, can add element only for uncompressed matrix
@@ -202,7 +207,7 @@ namespace algebra {
          * @param vec Vector to multiply with
          * @return std::vector<T> Resulting vector
          */
-        friend std::vector<T> operator*(const SparseMatrix<T, Order>& matrix, const std::vector<T>& vec){
+        friend std::vector<T> operator*(const Matrix<T, Order>& matrix, const std::vector<T>& vec){
             std::vector<T> result(matrix.numrows, T{0}); // Initialize result vector with zeros
             if (!matrix.is_compressed()) {
                  // Uncompressed format
@@ -256,7 +261,7 @@ namespace algebra {
          * @param vec Matrix with only one column to multiply with
          * @return std::vector<T> Resulting vector
          */
-        friend std::vector<T> operator*(const SparseMatrix<T, Order>& matrix, const SparseMatrix<T, Order>& vec) {
+        friend std::vector<T> operator*(const Matrix<T, Order>& matrix, const Matrix<T, Order>& vec) {
             if (vec.numcols != 1) {
                 throw std::invalid_argument("The second matrix must have one column.");
             }
@@ -287,7 +292,7 @@ namespace algebra {
          * @param matrix Matrix object
          * @return std::vector<T> Random vector
          */
-        friend std::vector<T> generateRandomVector(const SparseMatrix<T, Order>& matrix) {
+        friend std::vector<T> generateRandomVector(const Matrix<T, Order>& matrix) {
             std::cout<<"\nCreating a random vector to perform matrix multiplication..."<<std::endl;
             std::vector<T> randomVector(matrix.numcols); // Vector length equal to number of columns
             

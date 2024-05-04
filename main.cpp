@@ -11,7 +11,7 @@ int main() {
     std::cout<<"## Test with a sparse matrix stored in ROW ordering ##"<<std::endl;
     
     //initialization of the matrix
-    algebra::SparseMatrix<double,algebra::StorageOrder::RowOrdering> M1(0,0);
+    algebra::Matrix<double,algebra::StorageOrder::RowOrdering> M1(0,0);
     
     //reading the matrix from a file
     M1.read("lnsp_131.mtx");
@@ -49,7 +49,7 @@ int main() {
     std::cout<<"\n\n\n## Test with a sparse matrix stored in COLUMN ordering ##"<<std::endl;
     
     //initialization of the matrix
-    algebra::SparseMatrix<double,algebra::StorageOrder::ColumnOrdering> M2(0,0);
+    algebra::Matrix<double,algebra::StorageOrder::ColumnOrdering> M2(0,0);
     
     //reading the matrix from a file
     M2.read("lnsp_131.mtx");
@@ -83,7 +83,7 @@ int main() {
 
 
     std::cout<<"\n\n\n## Smaller test case ##"<<std::endl;
-    algebra::SparseMatrix<double,algebra::StorageOrder::ColumnOrdering> A(5,3);
+    algebra::Matrix<double,algebra::StorageOrder::ColumnOrdering> A(5,3);
 
     A(0,0)=1;
     A(0,2)=3;
@@ -138,7 +138,7 @@ int main() {
     //A.uncompress();
     //A.print();
 
-    algebra::SparseMatrix<double,algebra::StorageOrder::ColumnOrdering> B(3,1);
+    algebra::Matrix<double,algebra::StorageOrder::ColumnOrdering> B(3,1);
 
     B(0,0) = 1;
     B(1,0) = 2;
@@ -167,7 +167,7 @@ int main() {
 
 int main() {
     // Define a sparse matrix of complex numbers
-    algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering> complexMatrix(3, 3);
+    algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering> complexMatrix(3, 3);
     
 
     // Fill the matrix with complex values
@@ -178,7 +178,7 @@ int main() {
     complexMatrix.print();
     
     // Define a vector of complex numbers
-    algebra::SparseMatrix<std::complex<double>, algebra::StorageOrder::RowOrdering> complexVec(3, 1);
+    algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering> complexVec(3, 1);
     complexVec(0, 0) = {1.0, 1.0};
     complexVec(1, 0) ={2.0, 2.0};
     complexVec(2, 0) = {3.0, 3.0};

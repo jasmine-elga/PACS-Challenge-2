@@ -1,3 +1,9 @@
+/**
+ * @file sparse_matrix_traits.hpp
+ * @brief Contains traits and concepts for sparse matrix elements.
+ */
+
+
 #ifndef SparseMatrixTraits_HPP
 #define SparseMatrixTraits_HPP
 #include<complex>
@@ -5,18 +11,31 @@
 #include <type_traits>
 
 namespace algebra{
-//Concept for understand if a datum is numeric
-template<typename T>
-concept Numeric = std::is_arithmetic_v<T>;
-//Concept to understand if a datum is complex
-template<typename T>
-concept Complex = requires(T t) {
-    { t.real() } -> Numeric;
-    { t.imag() } -> Numeric;
-};
+    /**
+     * @brief Concept to check if a type is numeric.
+     * @tparam T Type to check.
+     */
+    template<typename T>
+    concept Numeric = std::is_arithmetic_v<T>;
 
-//The elements of the matrix can now be either a real or a complex value
-template<typename T>
-concept RealOrComplex = Numeric<T> || Complex<T>;
-}
+
+    /**
+     * @brief Concept to check if a type is complex.
+     * @tparam T Type to check.
+     */
+    template<typename T>
+    concept Complex = requires(T t) {
+        { t.real() } -> Numeric;
+        { t.imag() } -> Numeric;
+    };
+
+    /**
+     * @brief Concept to check if a type is either real or complex.
+     * @tparam T Type to check.
+     */
+    template<typename T>
+    concept RealOrComplex = Numeric<T> || Complex<T>;
+
+} // namespace algebra
+
 #endif /* SparseMatrixTraits_HPP */
