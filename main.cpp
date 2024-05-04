@@ -113,24 +113,24 @@ int main() {
     std::vector<double> randomV = generateRandomVector(M1);
 
     // perform multiplication
-    t0_1 = std::chrono::high_resolution_clock::now();
+    auto t0_4 = std::chrono::high_resolution_clock::now();
     res_uncompressed = M1*randomV;
-    t1_1 = std::chrono::high_resolution_clock::now();
-    delta_t_1 = std::chrono::duration_cast<std::chrono::microseconds>(t1_1-t0_1);  
+    auto t1_4 = std::chrono::high_resolution_clock::now();
+    auto delta_t_4 = std::chrono::duration_cast<std::chrono::microseconds>(t1_4-t0_4);  
     std::cout<<"\nM*v, UNCOMPRESSED format (row ordering) "<<std::endl;
-    std::cout << ("The operation takes") << " : " << delta_t_1.count() << " ms" << std::endl;
+    std::cout << ("The operation takes") << " : " << delta_t_4.count() << " ms" << std::endl;
 
     std::cout<< "\n-> Let's now compress the matrix!"<<std::endl;
     M1.compress();
 
     
     // perform multiplication
-    t0_2 = std::chrono::high_resolution_clock::now();
+    auto t0_5 = std::chrono::high_resolution_clock::now();
     res_compressed = M1*randomV;
-    t1_2 = std::chrono::high_resolution_clock::now();
-    delta_t_2 = std::chrono::duration_cast<std::chrono::microseconds>(t1_2-t0_2);  
+    auto t1_5 = std::chrono::high_resolution_clock::now();
+    auto delta_t_5 = std::chrono::duration_cast<std::chrono::microseconds>(t1_5 - t0_5);  
     std::cout<<"\nM*v, COMPRESSED format (row ordering)"<<std::endl;
-    std::cout << ("The operation takes") << " : " << delta_t_2.count() << " ms" << std::endl;
+    std::cout << ("The operation takes") << " : " << delta_t_5.count() << " ms" << std::endl;
 
 
     std::cout<<"\n\n\n## Test with a sparse matrix stored in COLUMN ordering ##"<<std::endl;
@@ -144,22 +144,22 @@ int main() {
     M2.print();
     
     // perform multiplication
-    t0_1 = std::chrono::high_resolution_clock::now();
+    auto t0_6 = std::chrono::high_resolution_clock::now();
     res_uncompressed = M2*randomV;
-    t1_1 = std::chrono::high_resolution_clock::now();
-    delta_t_1 = std::chrono::duration_cast<std::chrono::microseconds>(t1_1-t0_1);  
+    auto t1_6 = std::chrono::high_resolution_clock::now();
+    auto delta_t_6 = std::chrono::duration_cast<std::chrono::microseconds>(t1_6-t0_6);  
     std::cout<<"\nM*v, UNCOMPRESSED format (column ordering)"<<std::endl;
-    std::cout << ("The operation takes") << " : " << delta_t_2.count() << " ms" << std::endl;
+    std::cout << ("The operation takes") << " : " << delta_t_6.count() << " ms" << std::endl;
 
     std::cout<< "\n-> Let's now compress the matrix!"<<std::endl;
     M2.compress();
     
     
     // perform multiplication
-    t0_2 = std::chrono::high_resolution_clock::now();
+    auto t0_7 = std::chrono::high_resolution_clock::now();
     res_compressed = M2*randomV;
-    t1_2 = std::chrono::high_resolution_clock::now();
-    delta_t_2 = std::chrono::duration_cast<std::chrono::microseconds>(t1_2-t0_2);  
+    auto t1_7 = std::chrono::high_resolution_clock::now();
+    auto delta_t_7 = std::chrono::duration_cast<std::chrono::microseconds>(t1_7-t0_7);  
     std::cout<<"\nM*v, COMPRESSED format (column ordering)"<<std::endl;
     std::cout << ("The operation takes") << " : " << delta_t_2.count() << " ms" << std::endl;
 
