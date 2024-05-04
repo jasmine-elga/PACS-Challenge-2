@@ -167,7 +167,7 @@ namespace algebra {
         auto coords = start->first;
          
         while(idx!=sz){
-            compressed_inner.push_back(count); 
+            compressed_inner.emplace_back(count); 
             if constexpr(Order == StorageOrder::RowOrdering){
                 // Consider row idx
                 start = uncompressed_data.lower_bound({idx, 0});
@@ -184,20 +184,20 @@ namespace algebra {
                 coords = it->first;
                 if constexpr(Order == StorageOrder::RowOrdering){
                     // Store the column index in the outer vector
-                    compressed_outer.push_back(coords[1]); 
+                    compressed_outer.emplace_back(coords[1]); 
                 }
                 else{
                     // Store the row index in the outer vector
-                    compressed_outer.push_back(coords[0]); 
+                    compressed_outer.emplace_back(coords[0]); 
                 }
                 // Store the value 
-                compressed_data.push_back(it->second);  
+                compressed_data.emplace_back(it->second);  
                 count++;
                 }
             idx++; // increase current row/column
         }
         // For the last row/column: add fictitious index after the last valid index
-        compressed_inner.push_back(count);
+        compressed_inner.emplace_back(count);
 
         // Clear uncompressed data after compression
         uncompressed_data.clear();
