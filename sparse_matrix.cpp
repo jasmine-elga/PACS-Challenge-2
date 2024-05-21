@@ -8,6 +8,26 @@
 
 namespace algebra {
 
+    // Random vector generation
+    template<RealOrComplex T, StorageOrder Order>
+    std::vector<T> generateRandomVector(const Matrix<T, Order>& matrix){
+            std::cout<<"\nCreating a random vector to perform matrix multiplication..."<<std::endl;
+            std::vector<T> randomVector(matrix.numcols); // Vector length equal to number of columns
+            
+            // Use a random device and Mersenne Twister engine for random number generation
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            // Assuming T is a floating-point type for simplicity
+            std::uniform_real_distribution<T> dist(0.0, 1.0); // Range [0.0, 1.0]
+
+            // Fill the vector with random values
+            for (std::size_t i = 0; i < matrix.numcols; ++i) {
+                randomVector[i] = dist(gen); // Generate random value
+            }
+            return randomVector;
+        }
+
+
     // Utility function to access elements in compressed format
     template<RealOrComplex T, StorageOrder Order>
     auto Matrix<T, Order>::compressed_access(std::size_t i, std::size_t j) {
@@ -532,5 +552,7 @@ namespace algebra {
     template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::RowOrdering>::norm<algebra::NormType::Frobenius>() const;
     template std::complex<double> algebra::Matrix<std::complex<double>, algebra::StorageOrder::ColumnOrdering>::norm<algebra::NormType::Frobenius>() const;
 
+    // Explicit instantiation for generateRandomVector
+    template std::vector<double> generateRandomVector<double,StorageOrder::RowOrdering>(const Matrix<double,StorageOrder::RowOrdering>& matrix);
 
 } // namespace algebra

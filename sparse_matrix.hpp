@@ -79,6 +79,82 @@ namespace algebra {
         }
     };
 
+    // Declaration of class Matrix (needed for the functions generateRandomVector and operator*)
+    template<RealOrComplex T, StorageOrder Order >
+    class Matrix;
+
+    // Declaration of generateRandomVector (definition in the source file)
+    template<RealOrComplex T, StorageOrder Order >
+    std::vector<T> generateRandomVector(const Matrix<T, Order>& matrix);
+
+    // Declaration and definition of operator* (matrix-vector multiplication)
+    template<RealOrComplex T, StorageOrder Order >
+    std::vector<T> operator*(const Matrix<T, Order>& matrix, const std::vector<T>& vec){
+            std::vector<T> result(matrix.numrows, T{0}); // Initialize result vector with zeros
+            if (!matrix.is_compressed()) {
+                 // Uncompressed format
+                std::size_t i{0};
+                std::size_t j{0};
+                
+                // Traverse the matrix and compute dot product
+                for (const auto& [coords, value] : matrix.uncompressed_data) {
+                    i = coords[0];
+                    j = coords[1];
+                    result[i] += value * vec[j];
+                }
+            } else {
+                // Compressed format
+                if constexpr(Order == StorageOrder::RowOrdering){
+                // Row ordering (CSR): traverse the matrix and perform classical row-times-vector algorithm
+                    for (std::size_t i = 0; i < matrix.numrows; ++i) {
+                        std::size_t row_start = matrix.compressed_inner[i];
+                        std::size_t row_end = matrix.compressed_inner[i + 1];    
+
+                        for (std::size_t k = row_start; k < row_end; ++k) {
+                            std::size_t col_index = matrix.compressed_outer[k];
+                            T value = matrix.compressed_data[k];
+                            result[i] += value * vec[col_index]; // Compute dot product
+                        }
+                    }
+                }
+                else{
+                    // Column ordering (CSC)
+                    for (std::size_t j = 0; j < matrix.numcols; ++j) {
+                        std::size_t col_start = matrix.compressed_inner[j];
+                        std::size_t col_end = matrix.compressed_inner[j + 1];
+                        
+                        for (std::size_t k = col_start; k < col_end; ++k) {
+                            std::size_t row_index = matrix.compressed_outer[k];
+                            T value = matrix.compressed_data[k];
+                            result[row_index] += value * vec[j]; // Compute linear combination
+                        }
+                    }  
+                }
+            }
+            return result;
+        }
+
+    // Declaration and definition of operator* (matrix-matrix multiplication)
+    template<RealOrComplex T, StorageOrder Order >
+    std::vector<T> operator*(const Matrix<T, Order>& matrix, const Matrix<T, Order>& vec) {
+            if (vec.numcols != 1) {
+                throw std::invalid_argument("The second matrix must have one column.");
+            }
+            // Transform the matrix with only one column in a std::vector
+            std::vector<T> vecColumn; // vector to store the column
+            if(vec.is_compressed()){
+                 for (size_t i = 0; i < vec.numrows; ++i){
+                    vecColumn.push_back(vec.compressed_data[i]);
+                 }
+            }
+            else{
+                for (const auto& [coords, value] : vec.uncompressed_data){
+                    vecColumn.push_back(value);
+                    }
+            }
+            // Perform multiplication using the operator* overloaded for matrix-vector multiplication
+            return matrix * vecColumn;
+        }
 
     /**
      * @brief Sparse matrix class supporting compressed and uncompressed storage
@@ -207,51 +283,7 @@ namespace algebra {
          * @param vec Vector to multiply with
          * @return std::vector<T> Resulting vector
          */
-        friend std::vector<T> operator*(const Matrix<T, Order>& matrix, const std::vector<T>& vec){
-            std::vector<T> result(matrix.numrows, T{0}); // Initialize result vector with zeros
-            if (!matrix.is_compressed()) {
-                 // Uncompressed format
-                std::size_t i{0};
-                std::size_t j{0};
-                
-                // Traverse the matrix and compute dot product
-                for (const auto& [coords, value] : matrix.uncompressed_data) {
-                    i = coords[0];
-                    j = coords[1];
-                    result[i] += value * vec[j];
-                }
-            } else {
-                // Compressed format
-                if constexpr(Order == StorageOrder::RowOrdering){
-                // Row ordering (CSR): traverse the matrix and perform classical row-times-vector algorithm
-                    for (std::size_t i = 0; i < matrix.numrows; ++i) {
-                        std::size_t row_start = matrix.compressed_inner[i];
-                        std::size_t row_end = matrix.compressed_inner[i + 1];    
-
-                        for (std::size_t k = row_start; k < row_end; ++k) {
-                            std::size_t col_index = matrix.compressed_outer[k];
-                            T value = matrix.compressed_data[k];
-                            result[i] += value * vec[col_index]; // Compute dot product
-                        }
-                    }
-                }
-                else{
-                    // Column ordering (CSC)
-                    for (std::size_t j = 0; j < matrix.numcols; ++j) {
-                        std::size_t col_start = matrix.compressed_inner[j];
-                        std::size_t col_end = matrix.compressed_inner[j + 1];
-                        
-                        for (std::size_t k = col_start; k < col_end; ++k) {
-                            std::size_t row_index = matrix.compressed_outer[k];
-                            T value = matrix.compressed_data[k];
-                            result[row_index] += value * vec[j]; // Compute linear combination
-                        }
-                    }  
-                }
-            }
-            return result;
-        }
-
+        friend std::vector<T> operator*<T,Order>(const Matrix<T, Order>& matrix, const std::vector<T>& vec);
 
         /**
          * @brief Overloaded operator for multiplication between a matrix and another matrix with just one column. 
@@ -261,26 +293,7 @@ namespace algebra {
          * @param vec Matrix with only one column to multiply with
          * @return std::vector<T> Resulting vector
          */
-        friend std::vector<T> operator*(const Matrix<T, Order>& matrix, const Matrix<T, Order>& vec) {
-            if (vec.numcols != 1) {
-                throw std::invalid_argument("The second matrix must have one column.");
-            }
-            // Transform the matrix with only one column in a std::vector
-            std::vector<T> vecColumn; // vector to store the column
-            if(vec.is_compressed()){
-                 for (size_t i = 0; i < vec.numrows; ++i){
-                    vecColumn.push_back(vec.compressed_data[i]);
-                 }
-            }
-            else{
-                for (const auto& [coords, value] : vec.uncompressed_data){
-                    vecColumn.push_back(value);
-                    }
-            }
-            // Perform multiplication using the operator* overloaded for matrix-vector multiplication
-            return matrix * vecColumn;
-        }
-
+        friend std::vector<T> operator*<T,Order>(const Matrix<T, Order>& matrix, const Matrix<T, Order>& vec);
 
 
 
@@ -290,22 +303,7 @@ namespace algebra {
          * @param matrix Matrix object
          * @return std::vector<T> Random vector
          */
-        friend std::vector<T> generateRandomVector(const Matrix<T, Order>& matrix) {
-            std::cout<<"\nCreating a random vector to perform matrix multiplication..."<<std::endl;
-            std::vector<T> randomVector(matrix.numcols); // Vector length equal to number of columns
-            
-            // Use a random device and Mersenne Twister engine for random number generation
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            // Assuming T is a floating-point type for simplicity
-            std::uniform_real_distribution<T> dist(0.0, 1.0); // Range [0.0, 1.0]
-
-            // Fill the vector with random values
-            for (std::size_t i = 0; i < matrix.numcols; ++i) {
-                randomVector[i] = dist(gen); // Generate random value
-            }
-            return randomVector;
-        }
+        friend std::vector<T> generateRandomVector<T,Order>(const Matrix<T, Order>& matrix);
 
 
 

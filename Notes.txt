@@ -1,0 +1,17 @@
+- README is complete
+- use of GitHub: you could rely more on GitHub during the work on you code
+
+- Organization: you could group header and source files in foalders and create separate files for the tests
+- the code is well commented and organized
+
+- tests are complete and clear
+
+- friend functions should be defined outside of the class.
+    You can deifne them either in the header or source file, but beware to add an explicit instantiation if you define them in the src
+
+- you could overload the stream operator<< instead of defining a print method for the class
+- sparse matrix format is especially useful when you have very big matrices, so you should allow to print them.
+    In that case, you could display only row and column number and value of the non-zero entries, instead of the full matrix to improve readability.
+
+- the matrix-vector operator does not work as expected: the product of a 5X3 matrix and a column vector of dimension 3 should give a column vector of dimension 5.
+    This happens both in the case where the vector is a std::vector and when it is a one-column matrix.

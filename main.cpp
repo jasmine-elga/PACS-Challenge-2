@@ -110,7 +110,7 @@ int main() {
     M1.print();
     
     // creating a random vector to perform multiplication
-    std::vector<double> randomV = generateRandomVector(M1);
+    std::vector<double> randomV = algebra::generateRandomVector<double, algebra::StorageOrder::RowOrdering>(M1);
 
     // perform multiplication
     auto t0_4 = std::chrono::high_resolution_clock::now();
